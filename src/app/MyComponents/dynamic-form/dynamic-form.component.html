@@ -1,0 +1,33 @@
+<h3 class="head">Dynamic Form</h3>
+
+<div *ngIf="fields.length === 0">
+  <p>No fields added. Please add fields in the builder.</p>
+</div>
+
+<form *ngIf="fields.length > 0">
+  <div *ngFor="let field of fields">
+    <label [for]="field.name">{{ field.label }}</label>
+
+    <input *ngIf="field.type === 'text' || field.type === 'email' || field.type === 'number'"
+           [type]="field.type" [name]="field.name" [required]="field.required" />
+           
+    <input *ngIf="field.type === 'radio'" type="radio" [name]="field.name" [required]="field.required" />
+    
+    <input *ngIf="field.type === 'checkbox'" type="checkbox" [name]="field.name" [required]="field.required" />
+    
+    <select *ngIf="field.type === 'dropdown'" [name]="field.name">
+      <option value="option1">Option 1</option>
+      <option value="option2">Option 2</option>
+    </select>
+    
+    <input *ngIf="field.type === 'file'" type="file" [name]="field.name" />
+  </div>
+</form>
+
+<button (click)="generateFormHtml()">Generate HTML</button>
+
+<div>
+    <pre>
+        {{ formContent }}
+    </pre>
+</div>

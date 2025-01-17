@@ -1,0 +1,45 @@
+<div class="form-builder">
+    <label for="fieldName">Field Name:</label>
+    <input type="text" [(ngModel)]="fieldName" id="fieldName" placeholder="e.g. email" required />
+  
+    <label for="fieldType">Field Type:</label>
+    <select [(ngModel)]="fieldType" id="fieldType">
+      <option value="text">Text</option>
+      <option value="radio">Radio</option>
+      <option value="email">Email</option>
+      <option value="dropdown">Dropdown</option>
+      <option value="checkbox">Checkbox</option>
+      <option value="file">File</option>
+      <option value="number">Number</option>
+    </select>
+  
+    <label for="fieldRequired">Required:</label>
+    <select [(ngModel)]="fieldRequired" id="fieldRequired">
+      <option value="true">True</option>
+      <option value="false">False</option>
+    </select>
+  
+    <label for="fieldLabel">Field Label:</label>
+    <input type="text" [(ngModel)]="fieldLabel" id="fieldLabel" placeholder="e.g. Email Address" required />
+  
+    <button (click)="addField()">Add Field</button>
+</div>
+  
+<table>
+    <thead>
+      <tr>
+        <th>Field Name</th>
+        <th>Field Type</th>
+        <th>Required</th>
+        <th>Label</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let field of fields; let i = index">
+        <td>{{ field.name }}</td>
+        <td>{{ field.type }}</td>
+        <td>{{ field.required ? 'True' : 'False' }}</td>
+        <td>{{ field.label }}</td>
+      </tr>
+    </tbody>
+  </table>
